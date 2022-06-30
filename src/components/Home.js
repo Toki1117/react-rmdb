@@ -12,10 +12,16 @@ import {useHomeFetch} from '../hooks/useHomeFetch';
 
 //Images
 import NoImage from "../images/no_image.jpg";
+import Button from "./Button";
 
 const Home = () => {
-    const {setSearchTerm, state, loading, error, searchTerm } = useHomeFetch();
+    const {setSearchTerm, state, loading, error, searchTerm, isLoadingMore, setIsLoadingMore } = useHomeFetch();
     console.log({state});
+
+    if(error) {
+        return <div>Something went wrong...</div>
+    }
+
     return (
         <>
             {
@@ -41,7 +47,14 @@ const Home = () => {
                         movieId={movie.id} />
                 )) }
             </Grid>
-            <Spinner />
+            { loading && <Spinner /> }
+            {
+                state?.page < state?.total_pages && !loading && (
+                <Button 
+                    text='Load More' 
+                    callback={() => setIsLoadingMore(true)}
+                />
+            )}
         </>
     );
 };
