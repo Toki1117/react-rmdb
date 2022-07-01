@@ -7,7 +7,7 @@ export const Image = styled.img`
     object-fit: cover;
     border-radius: 20px;
     animation: animateThumb 0.5s;
-    cursor: pointer;
+    cursor: ${({clickable}) => clickable ? 'pointer' : 'default' };
 
     :hover {
         opacity: 0.8;
