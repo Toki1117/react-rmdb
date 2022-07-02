@@ -10,6 +10,7 @@ import NoImage from "../images/no_image.jpg";
 import { useMovieFetch } from "../hooks/useMovieFetch";
 import BreadCrumb from "./BreadCrumb.js";
 import MovieInfo from "./MovieInfo";
+import MovieInfoBar from "./MovieInfoBar";
 
 
 const Movie = () => {
@@ -23,6 +24,11 @@ const Movie = () => {
         <>
         <BreadCrumb movieTitle={movie.original_title} />
         <MovieInfo movie={movie} />
+        <MovieInfoBar 
+            time={movie.time}
+            budget={movie.budget}
+            revenue={movie.revenue}
+        />
             <Grid></Grid>
         </>
     )
