@@ -37,7 +37,7 @@ const Movie = () => {
                     name={actor.name}
                     character={actor.character}
                     imageUrl={
-                        actor.profile_patch
+                        actor.profile_path
                         ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}`
                         : NoImage
                     }
