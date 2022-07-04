@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import API from "../API";
+import { isPersistedState } from "../helpers";
 
 const initialState = {
     page: 0,
@@ -34,9 +35,26 @@ export const useHomeFetch = () => {
     // Initial render and search
     useEffect(() => {
         console.log('MOUNTED');
+
+        if(!searchTerm) {
+            const homeState = isPersistedState('homeState');
+            if(homeState) {
+                console.log('FROM SESSIONSTORAGE');
+                setState(homeState);
+                return;
+            }
+        }
+        console.log('FROM API');
         setState(initialState);
         fecthMovies(1, searchTerm);
     }, [searchTerm]);
+
+    // Write to session storage
+    useEffect(() => {
+        if(!searchTerm) {
+            sessionStorage.setItem('homeState', JSON.stringify(state));
+        }
+    }, [searchTerm, state]);
 
     // Load More
     useEffect(()=>{
