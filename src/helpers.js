@@ -1,3 +1,5 @@
+import { useParams, useNavigate } from 'react-router-dom';
+
 // Convert time to hours and minutes
 export const calcTime = time => {
   const hours = Math.floor(time / 60);
@@ -22,3 +24,8 @@ export const isPersistedState = stateName => {
   const sessionState = sessionStorage.getItem(stateName);
   return sessionState && JSON.parse(sessionState);
 };
+
+// HOC, Higher Order Component
+export const withRouter = (Component) => (props) => ( 
+  <Component {...props} params={useParams()} navigate={useNavigate()} />
+);
