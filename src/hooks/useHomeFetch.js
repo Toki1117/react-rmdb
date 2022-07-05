@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import API from "../API";
 import { isPersistedState } from "../helpers";
 
-const initialState = {
+export const initialState = {
     page: 0,
     results: [],
     total_pages: 0,
