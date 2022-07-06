@@ -12,8 +12,7 @@ import NotFound from './components/NotFound';
 // it's a wrapping div with general style
 import { GlobalStyle } from "./GlobalStyle";
 
-function App() {
-  return (
+const App: React.FC = () => (
     <Router>
       <Header />
       <Routes>
@@ -23,7 +22,6 @@ function App() {
       </Routes>
       <GlobalStyle/>
     </Router>
-  );
-}
+);
 
 export default App;

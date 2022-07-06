@@ -15,19 +15,60 @@ const defaultConfig = {
   }
 };
 
+export interface ApiResponse<T> {
+  page: number;
+  results: T;
+  total_pages: number;
+  total_results: number;
+}
+
+export type Movie = {
+  backdrop_path: string;
+  id: number;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  title: string;
+  vote_average: number;
+  vote_count: number;
+  budget: number;
+  runtime: number;
+  revenue: number;
+}
+
+export type Credits = {
+  id: number;
+  cast: Cast[];
+  crew: Crew[];
+}
+
+export type Cast = {
+  character: string;
+  credit_id: string;
+  name: string;
+  profile_path: string;
+}
+
+export type Crew = {
+  job: string;
+  credit_id: number;
+  name: string;
+}
+
 const apiSettings = {
-  fetchMovies: async (searchTerm, page) => {
-    const endpoint = searchTerm
+  fetchMovies: async (searchTerm: string, page: number): Promise<ApiResponse<Movie[]>> => {
+    const endpoint: string = searchTerm
       ? `${SEARCH_BASE_URL}${searchTerm}&page=${page}`
       : `${POPULAR_BASE_URL}&page=${page}`;
     return await (await fetch(endpoint)).json();
   },
-  fetchMovie: async movieId => {
-    const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
+  fetchMovie: async (movieId: number): Promise<Movie> => {
+    const endpoint: string = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
     return await (await fetch(endpoint)).json();
   },
-  fetchCredits: async movieId => {
-    const creditsEndpoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
+  fetchCredits: async (movieId: number): Promise<Movie> => {
+    const creditsEndpoint: string = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
     return await (await fetch(creditsEndpoint)).json();
   },
   // Bonus material below for login
