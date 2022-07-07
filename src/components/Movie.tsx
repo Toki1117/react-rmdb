@@ -8,7 +8,7 @@ import Spinner from "./Spinner";
 // Images
 import NoImage from "../images/no_image.jpg";
 import { useMovieFetch } from "../hooks/useMovieFetch";
-import BreadCrumb from "./BreadCrumb.js";
+import BreadCrumb from "./BreadCrumb";
 import MovieInfo from "./MovieInfo";
 import MovieInfoBar from "./MovieInfoBar";
 import Actor from "./Actor";

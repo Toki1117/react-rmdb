@@ -6,7 +6,7 @@ import { Image } from "./Thumb.styles";
 
 type Props = {
     image: string;
-    movieId: number;
+    movieId?: number;
     clickable: boolean;
 }
 

@@ -1,9 +1,11 @@
 import { useEffect, useState, useCallback } from "react";
-import API from '../API';
+import API, { Movie, Cast, Crew } from '../API';
 import { isPersistedState } from "../helpers";
 
-export const useMovieFetch = (movieId) => {
-    const [state, setState] = useState({});
+export type MovieState = Movie & { actors: Cast[], directors: Crew[] };
+
+export const useMovieFetch = (movieId: string) => {
+    const [state, setState] = useState<MovieState>({} as MovieState);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
@@ -32,7 +34,7 @@ export const useMovieFetch = (movieId) => {
     }, [movieId]);
 
     useEffect(()=> {
-        const movieState = isPersistedState('movieId');
+        const movieState = isPersistedState(movieId);
         if(movieState) {
             console.log('MOVIE FROM SESSION STORAGE');
            setState(movieState);
@@ -45,7 +47,7 @@ export const useMovieFetch = (movieId) => {
 
     //Write to session storage
     useEffect(()=> {
-        sessionStorage.setItem(movieId, JSON.stringify(state));
+        sessionStorage.setItem(movieId.toString(), JSON.stringify(state));
     }, [movieId, state])
 
     return { state, loading, error };
