@@ -14,8 +14,8 @@ import {useHomeFetch} from '../hooks/useHomeFetch';
 import NoImage from "../images/no_image.jpg";
 import Button from "./Button";
 
-const Home = () => {
-    const {setSearchTerm, state, loading, error, searchTerm, isLoadingMore, setIsLoadingMore } = useHomeFetch();
+const Home: React.FC = () => {
+    const {setSearchTerm, state, loading, error, searchTerm, setIsLoadingMore } = useHomeFetch();
     console.log({state});
 
     if(error) {

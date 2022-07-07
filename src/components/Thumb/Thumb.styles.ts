@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const Image = styled.img`
+type Props = {
+    clickable?: boolean;
+}
+
+export const Image = styled.img<Props>`
     width: 100%;
     max-width: 720px;
     transition: all 0.3s;

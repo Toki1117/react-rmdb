@@ -4,7 +4,11 @@ import icon from "../../images/search-icon.svg";
 // Styles
 import { Wrapper, Content } from "./SearchBar.styles";
 
-const SearchBar = ({setsearchTerm}) => {
+type Props = {
+    setsearchTerm: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const SearchBar: React.FC<Props> = ({setsearchTerm}) => {
     const [state, setState] = useState('');
     const initial = useRef(true);
 
